@@ -37,19 +37,6 @@ export class Vector3 {
       this.x*v.y - this.y*v.x);
   }
 
-  /**
-   *
-   * @param r radius
-   * @param azi azimuthal angle (from x-axis: Range:  0 ... 2*PI)
-   * @param pol polar angle (from z-axis Range: 0 .. PI )
-   */
-  spherical(r: number ,azi: number, pol: number): Vector3{
-  return new Vector3(
-    r * Math.sin(pol) * Math.cos(azi),
-    r * Math.sin(pol) * Math.sin(azi),
-    r * Math.cos(pol))
-  }
-
   getAzi() : number
   {
     return Math.atan2(this.y, this.x);
@@ -100,5 +87,18 @@ export class Vector3 {
 
 export function Json2Vector3(v: any) {
   return new Vector3(v.x, v.y, v.z);
+}
+
+   /**
+*
+* @param r radius
+* @param azi azimuthal angle (from x-axis: Range:  0 ... 2*PI)
+* @param pol polar angle (from z-axis Range: 0 .. PI )
+*/
+export function spherical(r: number ,azi: number, pol: number): Vector3{
+return new Vector3(
+ r * Math.sin(pol) * Math.cos(azi),
+ r * Math.sin(pol) * Math.sin(azi),
+ r * Math.cos(pol))
 }
 

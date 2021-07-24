@@ -1,4 +1,4 @@
-import {Vector3, Json2Vector3}  from '../src/model/Vector3';
+import {Vector3, Json2Vector3, spherical}  from '../src/model/Vector3';
 
 test ('default vector has zero components', () => {
   const v = new Vector3();
@@ -68,6 +68,10 @@ test ('normalized vector has length 1', () => {
   expect(v.normalized().length()).toBeCloseTo(1, 8);
 })
 
+test ('spherical coordinates', () => {
+  expect(spherical(2, 0, 0).z).toBeCloseTo(2,8);
+  expect(spherical(2, Math.PI/2, Math.PI/2).y).toBeCloseTo(2,8);
+})
 
 
 
