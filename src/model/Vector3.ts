@@ -1,3 +1,4 @@
+
 export class Vector3 {
   readonly x: number;
   readonly y: number;
@@ -77,7 +78,6 @@ export class Vector3 {
     return(Math.acos(cos));
   }
 
-
   /**
   * Right hand rule!
   * @param axis
@@ -88,6 +88,17 @@ export class Vector3 {
     axis = axis.normalized();
     //Rodriques formula:
     return this.mul(Math.cos(angle)).sum(axis.cross(this).mul(Math.sin(angle))).sum(axis.mul(axis.dot(this)).mul(1-Math.cos(angle)));
+  }
+
+  equals(v: Vector3): boolean {
+    const eps = 0.00000000001;
+    return Math.abs(this.x - v.x) < eps
+        && Math.abs(this.y - v.y) < eps
+        && Math.abs(this.z - v.z) < eps;
+  }
 }
 
+export function Json2Vector3(v: any) {
+  return new Vector3(v.x, v.y, v.z);
 }
+
