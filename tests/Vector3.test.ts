@@ -63,6 +63,11 @@ test ('rotation is commutative with respect to same axis', () => {
   expect(v1.rotate(axis, 2).rotate(axis, 1).equals(v1.rotate(axis, 1).rotate(axis, 2))).toBeTruthy();
 })
 
+test ('normalized vector has length 1', () => {
+  const v = new Vector3(0.6, 7, 77.2);
+  expect(v.normalized().length()).toBeCloseTo(1, 8);
+})
+
 
 
 

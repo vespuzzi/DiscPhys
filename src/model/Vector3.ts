@@ -91,7 +91,7 @@ export class Vector3 {
   }
 
   equals(v: Vector3): boolean {
-    const eps = 0.00000000001;
+    const eps = 0.0000000001;
     return Math.abs(this.x - v.x) < eps
         && Math.abs(this.y - v.y) < eps
         && Math.abs(this.z - v.z) < eps;
