@@ -96,9 +96,9 @@ export function Json2Vector3(v: any) {
 * @param pol polar angle (from z-axis Range: 0 .. PI )
 */
 export function spherical(r: number ,azi: number, pol: number): Vector3{
-return new Vector3(
- r * Math.sin(pol) * Math.cos(azi),
- r * Math.sin(pol) * Math.sin(azi),
- r * Math.cos(pol))
+  return new Vector3(
+    r * Math.sin(pol) * Math.cos(azi),
+    r * Math.sin(pol) * Math.sin(azi),
+    r * Math.cos(pol))
 }
 
