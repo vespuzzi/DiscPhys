@@ -1,4 +1,6 @@
 import { Json2Vector3, Vector3 } from "./Vector3";
+// @ts-ignore
+// import Spline from "../../node_modules/cubic-spline/index.js";
 const Spline = require('cubic-spline');
 
 export class DiscState {
@@ -36,8 +38,8 @@ export class DiscState {
 	}
 }
 
-const defaultLiftArgs = [-10, -5,  0,  5,   10, 15, 20,  25, 30,  40,   45, 67, 90];
-const defaultLiftVals = [-.25, 0, .2, 0.4, .6, .9,  1.2, 1.4, 1.7, 0.9, 1.0 ,0.5 , 0]; 
+const defaultLiftArgs = [-90, -45, -10, -5,  0,  5,   10, 15, 20,  25, 30,  40,   45, 67, 90];
+const defaultLiftVals = [0.0, -0.9,-.25, 0, .2, 0.4, .6, .9,  1.2, 1.4, 1.7, 0.9, 1.0 ,0.5 , 0]; 
 const defaultLiftCoef = new Spline(defaultLiftArgs, defaultLiftVals);
 
 const defaultDragArgs = [-15, -10, -5,  0,  5,   10, 15, 20,  25,  30,  40, 50, 90];
@@ -65,4 +67,12 @@ export class DiscProps {
 		this.cLift = cLift;
 		this.cDrag = cDrag;
 	}
+
+	cLiftData(start: number, end: number, step: number): any {
+		const data = [];
+		for (var x = start; x <= end; x+= step) {
+			data.push({x, y: this.cLift.at(x)});
+		}
+		return data;
+	} 
 }
