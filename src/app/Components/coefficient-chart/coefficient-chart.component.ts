@@ -25,10 +25,26 @@ export class CoefficientChartComponent implements OnInit {
               data: data,
               borderWidth: 2,
               borderColor: 'blue',
-          }]
+              pointRadius: 0
+          },
+          {
+            label: 'Drag coefficient',
+            data: discProps.cDragData(-90, 90, 1),
+            borderWidth: 2,
+            borderColor: 'red',
+            pointRadius: 0
+        },
+        {
+          label: 'Pitching moment coefficient',
+          data: discProps.cPitchingData(-90, 90, 1),
+          borderWidth: 2,
+          borderColor: 'green',
+          pointRadius: 0
+      }]
+          
       },
       options:{
-        showLine: true
+        showLine: true,
       }
   });
   }
