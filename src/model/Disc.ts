@@ -6,34 +6,19 @@ const Spline = require('cubic-spline');
 export class DiscState {
     readonly r: Vector3; //position
 	readonly v: Vector3; //velocity
-	readonly spin: number; //angular momentum
-	readonl
+	readonly w: Vector3; //angular velocity
 	readonly n: Vector3;//orientation:  unit vector perpendicular to disc plane
-	// double A; 
-	// double I; //moment of inertia
-	// double w; //angular speed;
-	// double rho; //air density
-	// double dt;
-	// double t; 
-	// double g=-9.81; //acceleration of gravity
-	// Vector G = new Vector();
-	// double aoa; 
-	// Vector drag;
-	// Vector lift;
-	// Vector F = new Vector(); //Resultant of aerodynamic forces
-	// Vector T = new Vector(); //Resultant of aerodynamic moments
-	// Vector a = new Vector(); //acceleration
-	// double counterClockWiseness = -1.0; // right hand backhand or lefthand forehand -> -1 disc normal opposite to angular velocity
     constructor (
 			r: Vector3 = new Vector3(0,0,1.5), //default initial height = 1.5
 			v: Vector3 = new Vector3(0,0,0),
-			spin: Vector3 = new Vector3(0,0,0),
-			n: Vector3 = new Vector3(0,0,1),	
+			spin: number = 1,           //revolutions/second
+			n: Vector3 = new Vector3(0,0,1),
+
 		) {
 			this.r = r;
 			this.v = v;
-			this.L = L;
 			this.n = n;
+			this.w = n.mul(spin * 2 * Math.PI); //angular velocity [rad/s]
 	}
 }
 
