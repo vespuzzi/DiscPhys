@@ -7,11 +7,11 @@ export class DiscState {
     readonly r: Vector3; //position
 	readonly v: Vector3; //velocity
 	readonly w: Vector3; //angular velocity
-	readonly n: Vector3;//orientation:  unit vector perpendicular to disc plane
+	readonly n: Vector3; //orientation:  unit vector perpendicular to disc plane 
     constructor (
 			r: Vector3 = new Vector3(0,0,1.5), //default initial height = 1.5
 			v: Vector3 = new Vector3(0,0,0),
-			spin: number = 1,           //revolutions/second
+			spin: number = 1,           //revolutions/second, positive sign -> counterclockwise rotation
 			n: Vector3 = new Vector3(0,0,1),
 
 		) {
