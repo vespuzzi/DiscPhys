@@ -17,7 +17,9 @@ export class CoefficientChartComponent implements OnInit {
   ngOnInit(): void {
     const discProps = new DiscProps();
     const data = discProps.cLiftData(-90, 90, 1);
-    var myChart = new Chart("coeffChart", {
+   // const aChart = new Chart()
+
+    const myChart = new Chart("coeffChart", {
       type: 'scatter',
       data: {
           datasets: [{
@@ -33,18 +35,25 @@ export class CoefficientChartComponent implements OnInit {
             borderWidth: 2,
             borderColor: 'red',
             pointRadius: 0
-        },
-        {
+          },
+          {
           label: 'Pitching moment coefficient',
           data: discProps.cPitchingData(-90, 90, 1),
           borderWidth: 2,
           borderColor: 'green',
           pointRadius: 0
-      }]
+          }]
           
       },
       options:{
+        responsive: true,
         showLine: true,
+        scales: {
+          x: {
+            min: -90,
+            max: 90
+          }
+        },
       }
   });
   }

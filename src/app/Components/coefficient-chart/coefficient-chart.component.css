@@ -1,16 +1,16 @@
 #divChart{
-    display: block;
-    width: 600px;
-    height: 500px;
-    border-width: 1;
+    display: flexbox;
+    width: 150vh;
+    height: 1500px;
+    border-width: 9;
     color: 'blue';
 }
 
 .chartContainer{
     display: block;
-    width: 600px;
-    height: 500px;
-    border-width: 1;
+    /* width: 1000px; */
+    height: 1500px;
+    border-width: 9;
     color: 'blue';
     font-weight: bold;
 }
