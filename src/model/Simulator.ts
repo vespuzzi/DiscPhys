@@ -3,11 +3,17 @@ import { Vector3 } from "./Vector3";
 
 export class Environment{
     readonly rho : number; // air density;
-    readonly windVelocity : Vector3;
+    private _windVelocity!: Vector3;
+    public get windVelocity(): Vector3 {
+        return this._windVelocity;
+    }
+    public set windVelocity(value: Vector3) {
+        this._windVelocity = value;
+    }
     readonly G: Vector3;
-    constructor (rho: number = 1.2, windVelocity: Vector3 = new Vector3(0,0,0), G: Vector3 = new Vector3(0, 0, 9.81)) {
+    constructor (rho: number = 1.2, _windVelocity: Vector3 = new Vector3(0,0,0), G: Vector3 = new Vector3(0, 0, 9.81)) {
         this.rho = rho;
-        this.windVelocity = windVelocity;
+        this.windVelocity = _windVelocity;
         this.G = G;
     }
 }
