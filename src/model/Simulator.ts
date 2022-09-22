@@ -1,5 +1,5 @@
 import { DiscProps, DiscState } from "./Disc";
-import { Vector3 } from "./Vector3";
+import { spherical, Vector3 } from "./Vector3";
 
 export class Environment{
     readonly rho : number; // air density;
@@ -11,7 +11,7 @@ export class Environment{
         this._windVelocity = value;
     }
     readonly G: Vector3;
-    constructor (rho: number = 1.2, _windVelocity: Vector3 = new Vector3(0,0,0), G: Vector3 = new Vector3(0, 0, 9.81)) {
+    constructor (rho: number = 1.2, _windVelocity: Vector3 = new Vector3(0,0,0), G: Vector3 = new Vector3(0, 0, -9.81)) {
         this.rho = rho;
         this.windVelocity = _windVelocity;
         this.G = G;
@@ -39,7 +39,7 @@ export class Simulation {
         const va = discState.v.sub(this.env.windVelocity);           //Disc air velocity
         const Va = va.length();                                      //Disc air speed
         const q = .5 * this.A * this.env.rho * Va * Va;              //Dynamic pressure; 
-        const aoa = this.radAsDeg(va.angle(discState.n)-Math.PI/2);  //angle of attack in degrees
+        const aoa = rad2Deg(va.angle(discState.n)-Math.PI/2);  //angle of attack in degrees
         const vn = va.normalized();                                  //Direction vector of disc air speed
         const curL = discState.n.mul(discState.w.length()).mul(this.I)  //Angular momentum;
         //Aerodynamic forces
@@ -48,10 +48,10 @@ export class Simulation {
         const n = discState.n;                           
         const lift = n.sub(vn.mul(n.dot(vn))).normalized().mul(mLift);     //direction of the lift times lift magnitude
         //Drag
-        const mDrag = q * this.discProps.cDrag(aoa);                  //Magnitude of drag force
+        const mDrag = q * this.discProps.cDrag.at(aoa);                  //Magnitude of drag force
         const drag = vn.mul(-mDrag);
         //Sum All forces acting: lift, drag and gravity 
-        const F = lift.sum(drag).sum(this.env.G);        
+        const F = lift.sum(drag).sum(this.env.G.mul(this.discProps.m));        
         
         //Pitching torque
         const mPitch = q * this.discProps.d * this.discProps.cPitching.at(aoa); //magnitude of aerodynamic pitcing torque
@@ -65,31 +65,52 @@ export class Simulation {
         const v = discState.v.sum(a.mul(dt));
         const newL = curL.sum(torq.mul(dt));                               
         const spin = newL.mul(1/this.I).length()/(2 * Math.PI); 
-        const counterClockWiseness = -Math.sign(discState.w.dot(discState.n));
-
-        return new DiscState(r, v, spin, newL.normalized().mul(counterClockWiseness));
+        //const counterClockWiseness = -Math.sign(discState.w.dot(discState.n));
+        return new DiscState(r, v, spin, newL.normalized()); //
     }
+    
 
-    simulate(discStates: DiscState[]): DiscState[]{
+    defCont = (states: DiscState[]) => states[states.length-1].r.z > 0; 
+
+    simulate(discStates: DiscState[], 
+             continueCondition: (states: DiscState[]) => boolean = this.defCont): DiscState[]{
         const curState = discStates[discStates.length-1];
-        return curState.r.z > 0 ?
-            [...discStates, this.updateDiscState(curState, 0.01)] :
+        return continueCondition(discStates) ? //curState.r.z > 0 ?
+            this.simulate([...discStates, this.updateDiscState(curState, 0.01)], continueCondition) :
             discStates;
        
     }
-
-    radAsDeg(rad: number)
-	{
-		return rad/Math.PI*180;
-	}
-	
-	degAsRad(deg: number)
-	{
-		return deg/180*Math.PI;
-	}
-
 }
 
-const simulazion = new Simulation(new DiscProps(), new Environment());
-const results: DiscState[] = simulazion.simulate([new DiscState()]);
+export function rad2Deg(rad: number)
+{
+    return rad/Math.PI*180;
+}
+
+export function deg2Rad(deg: number)
+{
+    return deg/180*Math.PI;
+}
+
+/**
+ * @param releaseHeight Height from ground ie. z coordinate in meters. (x: forward, y: sideways growing left)    
+ * @param speed         Magnitude of the velocity of the disc in meters per second
+ * @param spin          Rotation speed of the disc in revolutions per second
+ * @param pitchAngle    Direction of the disc motion in degrees: larger value means more upwards  from xy-plane
+ * @param anhyzer       Tilt of the disc in degrees larger value means more tilt to the left. Negative values mean hyzer
+ * @param initialAoA    Initial angle of attack in degrees: Angle between disc plane and disc velocity
+ * @return              Initial disc state
+ */
+export function initialDiscSetup(
+    releaseHeight:number, 
+    speed: number,
+    spin: number,  
+    pitchAngle: number, 
+    anhyzer: number,  
+    initialAoA: number): DiscState{
+  const position = new Vector3(0,0, releaseHeight);  
+  const velocity = spherical(speed, 0, deg2Rad(90-pitchAngle));
+  const ori = spherical(1, deg2Rad(180), deg2Rad(pitchAngle + initialAoA)).rotate(velocity, deg2Rad(anhyzer)); 
+  return new DiscState(position, velocity, spin, ori)
+}
 
