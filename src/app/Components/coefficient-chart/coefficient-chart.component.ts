@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { range } from 'rxjs';
 import { DiscProps } from 'src/model/Disc';
@@ -12,6 +12,7 @@ Chart.register(...registerables);
 })
 export class CoefficientChartComponent implements OnInit {
 
+  @Input() chartId: any;  
   constructor() { }
 
   ngOnInit(): void {
@@ -19,11 +20,11 @@ export class CoefficientChartComponent implements OnInit {
     const data = discProps.cLiftData(-90, 90, 1);
    // const aChart = new Chart()
 
-    const myChart = new Chart("coeffChart", {
+    const myChart = new Chart("sart", {
       type: 'scatter',
       data: {
           datasets: [{
-              label: 'Lift coefficient',
+              label: this.chartId,
               data: data,
               borderWidth: 2,
               borderColor: 'blue',

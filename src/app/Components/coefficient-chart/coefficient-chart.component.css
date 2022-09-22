@@ -1,16 +1,21 @@
 #divChart{
-    display: flexbox;
-    width: 150vh;
-    height: 1500px;
-    border-width: 9;
+    /* display: flex; */
+    /* width: 150vh;
+    height: 300px; */
+    border-width: 5;
+    border: solid rgb(236, 130, 179);
     color: 'blue';
 }
 
 .chartContainer{
-    display: block;
-    /* width: 1000px; */
-    height: 1500px;
-    border-width: 9;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
     color: 'blue';
     font-weight: bold;
+}
+
+.chart{
+    width: 400;
+    height: 300;
 }
