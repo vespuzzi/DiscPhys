@@ -1,3 +1,4 @@
+import { pairs } from "rxjs";
 import { Json2Vector3, Vector3 } from "./Vector3";
 // @ts-ignore
 // import Spline from "../../node_modules/cubic-spline/index.js";
@@ -21,16 +22,55 @@ export class DiscState {
 	}
 }
 
-const defaultLiftArgs = [-90, -45, -10,  -5,    -2.5,  0,    5,   10, 15,   20,   25, 30,  40, 45, 64, 90];
-const defaultLiftVals = [0.0, -0.75,-.25, -0.09, 0,   0.14, 0.45, .75, 1,  1.25, 1.5, 1.7, 1.3, 0.9 ,0.3 , 0]; 
-const defaultLiftCoef = new Spline(defaultLiftArgs, defaultLiftVals);
+// const defaultLiftArgs = [-90, -45, -10,  -5,    -2.5,  0,    5,   10, 15,   20,   25, 30,  40, 45, 64, 90];
+// const defaultLiftVals = [0.0, -0.75,-.25, -0.10, 0,   0.14, 0.45, .75, 1,  1.25, 1.5, 1.7, 1.3, 0.9 ,0.3 , 0]; 
+const liftCoeff = [
+	{angle: -90,	value:  0.00},
+	{angle: -80,  	value: -0.06},
+	{angle: -45, 	value: -0.75},
+	{angle: -10,	value: -0.25},
+	{angle: -5,		value: -0.10},
+	{angle: -2.5,  	value: 0.00},
+	{angle:  0,		value: 0.14},
+	{angle: +5,  	value: 0.45},
+	{angle: +10,  	value: 0.75},
+	{angle: +15,  	value: 1.10},
+	{angle: +20,  	value: 1.35},
+	{angle: +30,  	value: 1.65},
+	{angle: +40,  	value: 1.25},
+	{angle: +50,  	value: 0.75},
+	{angle: +60,  	value: 0.35},
+	{angle: +70,  	value: 0.15},
+	{angle: +80,  	value: 0.05},
+	{angle: +90,  	value: 0.00},
+]
+const defaultLiftCoef = new Spline(liftCoeff.map((pair) => pair.angle), liftCoeff.map((pair) => pair.value))
 
 const defaultDragArgs = [-90, -45, -20,   -15, -10, -5,  0,    5,   10, 15, 20,  25,  30,   40,    50, 90];
 const defaultDragVals = [1.9, 0.9, 0.38,  .28, .18, .11, 0.1, .15, .27, .4, 0.58, .72, 0.9, 1.3, 1.7, 2.1]; 
-const defaultDragCoef = new Spline(defaultDragArgs, defaultDragVals);
+const dragCoeff = [
+	{angle: -90,	value: 1.8},
+	{angle: -45,  	value: 1.1},
+	// {angle: -20, 	value: 0.38},
+	{angle: -10,	value: 0.18},
+	{angle: -5,		value: 0.08},
+	{angle:  0,		value: 0.10},
+	{angle: +5,  	value: 0.15},
+	// {angle: +10,  	value: 0.20},
+	// {angle: +15,  	value: 0.40},
+	// {angle: +20,  	value: 0.55},
+	{angle: +30,  	value: 0.92},
+	{angle: +40,  	value: 1.10},
+	{angle: +50,  	value: 1.30},
+	{angle: +60,  	value: 1.50},
+	{angle: +70,  	value: 1.70},
+	{angle: +80,  	value: 1.85},
+	{angle: +90,  	value: 2.10},
+]
+const defaultDragCoef = new Spline(dragCoeff.map((pair) => pair.angle), dragCoeff.map((pair) => pair.value));
 	 
 const defaultPitchingArgs = [-90.   -15,   -10,   -5,    0,     5,  10,    15,    20,    25,   30,    40,  50,    90];
-const defaultPitchingVals = [-0.01, -.065, -.04, -.035, -0.02, .01, 0.001, 0.025, 0.045, 0.07, 0.11,  0.17, 0.19, 0.01]; 
+const defaultPitchingVals = [-0.01, -.065, -.04, -.035, -0.02, .01, 0.002, 0.025, 0.045, 0.07, 0.11,  0.17, 0.19, 0.01]; 
 const defaultPitchingCoef = new Spline(defaultPitchingArgs, defaultPitchingVals);
 
 
