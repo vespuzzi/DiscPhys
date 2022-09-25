@@ -1,5 +1,4 @@
-import { pairs } from "rxjs";
-import { Json2Vector3, Vector3 } from "./Vector3";
+import { Vector3 } from "./Vector3";
 // @ts-ignore
 // import Spline from "../../node_modules/cubic-spline/index.js";
 const Spline = require('cubic-spline');
