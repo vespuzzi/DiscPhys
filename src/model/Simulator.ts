@@ -18,6 +18,16 @@ export class Environment{
     }
 }
 
+export class DiscSetup{
+    [name: string]: number;
+    releaseHeight = 1.4; 
+    speed = 20;
+    spin = 20; 
+    pitchAngle = 0; 
+    anhyzer = 0;  
+    initialAoA = 0; 
+}
+
 export class Simulation {
     readonly A: number              //   disc area
     readonly I: number              //   moment of inertia along principal axis
@@ -101,7 +111,7 @@ export function deg2Rad(deg: number)
  * @param initialAoA    Initial angle of attack in degrees: Angle between disc plane and disc velocity
  * @return              Initial disc state
  */
-export function initialDiscSetup(
+export function getInitialDiscState(
     releaseHeight:number, 
     speed: number,
     spin: number,  
@@ -113,4 +123,17 @@ export function initialDiscSetup(
   const ori = spherical(1, deg2Rad(180), deg2Rad(pitchAngle + initialAoA)).rotate(velocity, deg2Rad(anhyzer)); 
   return new DiscState(position, velocity, spin, ori)
 }
+
+export function initializeDiscState(setup: DiscSetup):DiscState{
+    return getInitialDiscState(
+              setup.releaseHeight,
+              setup.speed,
+              setup.spin,
+              setup.pitchAngle,
+              setup.anhyzer,
+              setup.initialAoA
+              );
+}
+
+
 
