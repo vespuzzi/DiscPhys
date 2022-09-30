@@ -24,7 +24,7 @@ export class CoefficientChartComponent implements OnInit {
       type: 'scatter',
       data: {
           datasets: [{
-              label: this.chartId,
+              label: 'Lift coefficient',
               data: data,
               borderWidth: 2,
               borderColor: 'blue',
