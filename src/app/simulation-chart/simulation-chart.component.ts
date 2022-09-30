@@ -18,7 +18,7 @@ export class SimulationChartComponent implements OnInit {
       type: 'scatter',
       data: {
           datasets: [{
-                label: "R hand bh",
+                label: "Above view",
                 data: [
                 ],  
                 borderWidth: 1.5,
@@ -26,7 +26,7 @@ export class SimulationChartComponent implements OnInit {
                 pointRadius: 0,
               },
               {
-                label: "R hand fore",
+                label: "Side view",
                 data: [
                 ],  
                 borderWidth: 1.5,
@@ -37,7 +37,7 @@ export class SimulationChartComponent implements OnInit {
       options:{
         plugins: {
           legend: {
-            display: false
+            display: true
           }
         },
         responsive: true,
