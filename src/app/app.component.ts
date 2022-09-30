@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DiscSetup, Simulation } from 'src/model/Simulator';
+import { SimulationChartComponent } from './simulation-chart/simulation-chart.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Disc Physics Simulator';
+  discSetup: DiscSetup = {releaseHeight: 1.4, speed: 30, spin: 25, pitchAngle: 11, tilt: 0, initialAoA: 4};
+  
+  updateSimulationInitialConditions(simulationChart: SimulationChartComponent, event: any, prop: string){
+    this.discSetup[prop] = event.value;
+    simulationChart.simulate(this.discSetup);
+  }
 }

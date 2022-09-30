@@ -1,7 +1,7 @@
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
-    color: #333;
+    color: rgb(201, 75, 75);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -14,10 +14,6 @@
   h5,
   h6 {
     margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
   }
 
   .spacer {
@@ -48,204 +44,112 @@
   .content {
     display: flex;
     margin: 70px auto 32px;
-    padding: 1 1px;
+    padding: 3 3px;
     /* max-width: "50%"; */
     flex-direction: row;
     align-items: flex-start;
-    border-width: 1px;
-    border: solid rgb(130, 236, 156);
+    /* border-width: 30px;
+    border: solid rgb(24, 26, 24); */
   }
 
   .chart {
-    flex: 80;
+    flex: 78;
     height: fit-content;
     border: solid rgb(55, 140, 173);
     border-width: 1px;
   }
 
   .left{
-    flex: 20;
-    height: 700px;
+    flex: 22;
+    height: 600px;
     border: solid rgb(55, 140, 173);
-    border-width: 1px;
+    border-width: 0.1px;
+    margin-left: 5;
   }
 
-
-   
-  svg.material-icons {
-    height: 24px;
-    width: auto;
+mat-slider {
+    width: 500px;
+    /* background-color: blue; */
+    /* position: relative; */
+  }
+  .mat-accent .mat-slider-thumb {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(158, 62, 62);
+    border: solid 2px gray;
+    bottom: -20px;
+    right: -20px;
   }
 
-  svg.material-icons:not(:last-child) {
-    margin-right: 8px;
+.borderx {
+    color: rgba(151, 197, 224, 0.897);
+    font-size: larger;
+    font-weight: 800;
+    text-align: end;  
   }
-
-  .card svg.material-icons path {
-    fill: #888;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    all: unset;
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
-    cursor: pointer;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-    border: none;
-    width: auto;
-    min-width: 30%;
+  
+.releaseHeight {
     position: relative;
-  }
+}
 
-  .card.card.highlight-card span {
-    margin-left: 60px;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  .terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-  }
-
-  .terminal::before {
-    content: "\2022 \2022 \2022";
+.releaseHeight:before {
+    /* margin: 3rem; */
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: rgb(58, 58, 58);
-    color: #c2c3c4;
-    width: 100%;
-    font-size: 2rem;
-    line-height: 0;
-    padding: 14px 0;
-    text-indent: 4px;
-  }
+    content: "Release height (m)";
+    z-index: -1;
+}
 
-  .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-    color: white;
-    padding: 0 1rem 1rem;
-    margin: 0;
-  }
+.speed {
+  position: relative;
+}
 
-  .circle-link {
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
-    margin: 8px;
-    background-color: white;
-    border: 1px solid #eeeeee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 1s ease-out;
-  }
+.speed:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Speed (m/s)";
+  z-index: -1;
+}
 
-  .circle-link:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  }
+.spin {
+  position: relative;
+}
 
-  /* footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
+.spin:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Spin: Right hand backhand  <  0 Hz  < Right hand fore ";
+  z-index: -1;
+}
 
-  footer a {
-    display: flex;
-    align-items: center;
-  } */
+.pitchAngle {
+  position: relative;
+}
 
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
+.pitchAngle:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Pitch Angle (deg)";
+  z-index: -1;
+}
 
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
+.tilt {
+  position: relative;
+}
 
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
+.tilt:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Tilt top left  < 0 degrees < Tilt top right";
+  z-index: -1;
+}
+  
+.initialAoA {
+  position: relative;
+}
 
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
+.initialAoA:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Initial Angle of Attack (deg)";
+  z-index: -1;
+} 

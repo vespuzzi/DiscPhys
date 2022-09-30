@@ -1,12 +1,3 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120" height="90" stroke="#000" stroke-linecap="round" stroke-linejoin="round" fill="#fff" fill-rule="evenodd">
@@ -40,18 +31,49 @@
 </div>
 
 <!-- <div class="content" role="main"> -->
+<div style="border: solid rgb(130, 236, 156)">
 
+
+</div>  
 <div class="content">
   <div class="left">
+    <div class="borderx releaseHeight">
+      <mat-slider  thumbLabel min="0.5" max="2" step="0.1" value={{discSetup.releaseHeight}}
+          (input)="updateSimulationInitialConditions(simulation, $event, 'releaseHeight')">
+      </mat-slider>
+    </div>  
+    <div class="borderx speed">
+      <mat-slider thumbLabel min="1" max="50" step="1" value={{discSetup.speed}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'speed')">
+      </mat-slider>
+    </div>
+    <div class="borderx spin">
+      <mat-slider thumbLabel min="-40" max="40" step="0.5" value={{discSetup.spin}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'spin')">
+      </mat-slider>
+    </div>
+    <div class="borderx pitchAngle">
+      <mat-slider thumbLabel min="-5" max="90" step="1" value={{discSetup.pitchAngle}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'pitchAngle')">
+      </mat-slider>
+    </div>
+    <div class="borderx tilt">
+      <mat-slider thumbLabel min="-180" max="180" step="1" value={{discSetup.tilt}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'tilt')">
+      </mat-slider>
+    </div>
+    <div class="borderx initialAoA">
+      <mat-slider thumbLabel min="-45" max="90" step="1" value={{discSetup.initialAoA}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'initialAoA')">
+      </mat-slider>    
+    </div>
     <app-coefficient-chart chartId="divChart"></app-coefficient-chart>
   </div>
   <div class="chart">
-    <app-simulation-chart></app-simulation-chart>
+    <app-simulation-chart #simulation></app-simulation-chart>
   </div>
-  <mat-slider min="-90" max="90" value="0"></mat-slider>
-  <!-- <app-coefficient-chart></app-coefficient-chart> -->
-  <!-- <app-coefficient-chart></app-coefficient-chart> -->
 </div>
+
 
 
 
