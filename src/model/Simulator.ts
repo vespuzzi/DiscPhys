@@ -21,11 +21,11 @@ export class Environment{
 export class DiscSetup{
     [name: string]: number;
     releaseHeight = 1.4; 
-    speed = 20;
-    spin = 20; 
-    pitchAngle = 0; 
-    anhyzer = 0;  
-    initialAoA = 0; 
+    speed = 30;
+    spin = 25; 
+    pitchAngle = 10; 
+    tilt = 0;  
+    initialAoA = 3; 
 }
 
 export class Simulation {
@@ -33,6 +33,8 @@ export class Simulation {
     readonly I: number              //   moment of inertia along principal axis
     readonly env: Environment;
     readonly discProps: DiscProps;
+    spinDirection: number | undefined;
+    curL: Vector3 | undefined;
 
     constructor (discProps: DiscProps, env: Environment = new Environment()){
         const discRadius = discProps.d/2; 
@@ -41,22 +43,25 @@ export class Simulation {
         this.I = discProps.m * discProps.rm * discProps.rm   //moment of inertia along principal axis
         this.env = env;
         this.discProps = discProps;
+
     }
 
 
     updateDiscState(discState: DiscState, dt: number) : DiscState{
-        //helper values
+        //Spin direction: if disc normal vector and angular speed direction are same spin direction is positive ie. counterclockwise otherwise clockwise
+        this.spinDirection = this.spinDirection ? this.spinDirection : Math.sign(discState.w.dot(discState.n))
         const va = discState.v.sub(this.env.windVelocity);           //Disc air velocity
         const Va = va.length();                                      //Disc air speed
         const q = .5 * this.A * this.env.rho * Va * Va;              //Dynamic pressure; 
-        const aoa = rad2Deg(va.angle(discState.n)-Math.PI/2);  //angle of attack in degrees
+        const aoa = rad2Deg(va.angle(discState.n)-Math.PI/2);        //angle of attack in degrees
         const vn = va.normalized();                                  //Direction vector of disc air speed
-        const curL = discState.n.mul(discState.w.length()).mul(this.I)  //Angular momentum;
-        //Aerodynamic forces
+        const curL = discState.w.mul(this.I)  //Angular momentum;
         //Lift 
-        const mLift = q * this.discProps.cLift.at(aoa)                 //lift magnitude
-        const n = discState.n;                           
-        const lift = n.sub(vn.mul(n.dot(vn))).normalized().mul(mLift);     //direction of the lift times lift magnitude
+        const mLift = q * this.discProps.cLift.at(aoa)                 //lift magnitude, negative values switch the direction 
+        const n = discState.n;  
+        // console.log('n', JSON.stringify(n));
+        const lift = n.sub(vn.mul(n.dot(vn))).normalized().mul(mLift);   //direction of the lift times lift magnitude 
+                                                                         // direction = n - (projection of n onto va) normalized
         //Drag
         const mDrag = q * this.discProps.cDrag.at(aoa);                  //Magnitude of drag force
         const drag = vn.mul(-mDrag);
@@ -66,24 +71,24 @@ export class Simulation {
         //Pitching torque
         const mPitch = q * this.discProps.d * this.discProps.cPitching.at(aoa); //magnitude of aerodynamic pitcing torque
         const pitch = va.cross(n).normalized().mul(mPitch);      //pitching moment is perpendicular to airspeed and disc normal vector  
-        const spindownCoeff = -0.00004; // rotation is slowing down only slightly
-        const spindownTorque = discState.w.normalized().mul(q*this.discProps.d*spindownCoeff);
-        const torq = pitch.sum(spindownTorque);                                                         //estimated slow down of rotation
+        const spindownCoeff = 0.01; // rotation is slowing down only slightly
+        // const spindownTorque = discState.w.normalized().mul(spindownCoeff);
+        // const torq = pitch.sum(spindownTorque);                                                         //estimated slow down of rotation
         //Kinematics: r = r0 + v0*dt + 1/2 * a * dt^2    v = v0 + a*dt, a = F/m,  rotation: L = Torq * dt 
         const a = F.mul(1/this.discProps.m);
         const r = discState.r.sum(discState.v.mul(dt)).sum(a.mul(.5).mul(dt*dt));
         const v = discState.v.sum(a.mul(dt));
-        const newL = curL.sum(torq.mul(dt));                               
-        const spin = newL.mul(1/this.I).length()/(2 * Math.PI); 
-        //const counterClockWiseness = -Math.sign(discState.w.dot(discState.n));
-        return new DiscState(r, v, spin, newL.normalized()); //
+        const newL = curL.sum(pitch.mul(dt)).mul(1-dt*spindownCoeff); 
+        //angular momentum length is always positive. multiplying by spindirection yields clockwise/counterclocwise 
+        const spin = newL.mul(1/this.I).length()/(2 * Math.PI) * this.spinDirection; 
+        //to calculate disc normal vector direction angular momentum must be multiplied by spin direction
+        return new DiscState(r, v, spin, newL.normalized().mul(this.spinDirection)); 
     }
     
 
     defCont = (states: DiscState[]) => states[states.length-1].r.z > 0; 
 
-    simulate(discStates: DiscState[], 
-             continueCondition: (states: DiscState[]) => boolean = this.defCont): DiscState[]{
+    simulate(discStates: DiscState[], continueCondition: (states: DiscState[]) => boolean = this.defCont): DiscState[]{
         const curState = discStates[discStates.length-1];
         return continueCondition(discStates) ? //curState.r.z > 0 ?
             this.simulate([...discStates, this.updateDiscState(curState, 0.01)], continueCondition) :
@@ -116,11 +121,11 @@ export function getInitialDiscState(
     speed: number,
     spin: number,  
     pitchAngle: number, 
-    anhyzer: number,  
+    tilt: number,  
     initialAoA: number): DiscState{
   const position = new Vector3(0,0, releaseHeight);  
   const velocity = spherical(speed, 0, deg2Rad(90-pitchAngle));
-  const ori = spherical(1, deg2Rad(180), deg2Rad(pitchAngle + initialAoA)).rotate(velocity, deg2Rad(anhyzer)); 
+  const ori = spherical(1, deg2Rad(180), deg2Rad(pitchAngle + initialAoA)).rotate(velocity, deg2Rad(tilt)); 
   return new DiscState(position, velocity, spin, ori)
 }
 
@@ -130,7 +135,7 @@ export function initializeDiscState(setup: DiscSetup):DiscState{
               setup.speed,
               setup.spin,
               setup.pitchAngle,
-              setup.anhyzer,
+              setup.tilt,
               setup.initialAoA
               );
 }

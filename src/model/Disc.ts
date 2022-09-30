@@ -8,7 +8,7 @@ export class DiscState {
 	readonly v: Vector3; //velocity
 	readonly w: Vector3; //angular velocity
 	readonly n: Vector3; //orientation:  unit vector perpendicular to disc plane pointig to the direction of the disc dome
-    constructor (
+    	constructor (
 			r: Vector3 = new Vector3(0,0,1.5), //default initial height = 1.5
 			v: Vector3 = new Vector3(0,0,0),
 			spin: number = 1,           //revolutions/second, positive sign -> counterclockwise rotation
@@ -21,8 +21,8 @@ export class DiscState {
 	}
 }
 
-// const defaultLiftArgs = [-90, -45, -10,  -5,    -2.5,  0,    5,   10, 15,   20,   25, 30,  40, 45, 64, 90];
-// const defaultLiftVals = [0.0, -0.75,-.25, -0.10, 0,   0.14, 0.45, .75, 1,  1.25, 1.5, 1.7, 1.3, 0.9 ,0.3 , 0]; 
+// Potts & Crowther 2007
+
 const liftCoeff = [
 	{angle: -90,	value:  0.00},
 	{angle: -80,  	value: -0.06},
@@ -45,8 +45,6 @@ const liftCoeff = [
 ]
 const defaultLiftCoef = new Spline(liftCoeff.map((pair) => pair.angle), liftCoeff.map((pair) => pair.value))
 
-const defaultDragArgs = [-90, -45, -20,   -15, -10, -5,  0,    5,   10, 15, 20,  25,  30,   40,    50, 90];
-const defaultDragVals = [1.9, 0.9, 0.38,  .28, .18, .11, 0.1, .15, .27, .4, 0.58, .72, 0.9, 1.3, 1.7, 2.1]; 
 const dragCoeff = [
 	{angle: -90,	value: 1.8},
 	{angle: -45,  	value: 1.1},
@@ -68,9 +66,28 @@ const dragCoeff = [
 ]
 const defaultDragCoef = new Spline(dragCoeff.map((pair) => pair.angle), dragCoeff.map((pair) => pair.value));
 	 
-const defaultPitchingArgs = [-90.   -15,   -10,   -5,    0,     5,  10,    15,    20,    25,   30,    40,  50,    90];
-const defaultPitchingVals = [-0.01, -.065, -.04, -.035, -0.02, .01, 0.002, 0.025, 0.045, 0.07, 0.11,  0.17, 0.19, 0.01]; 
-const defaultPitchingCoef = new Spline(defaultPitchingArgs, defaultPitchingVals);
+const pitchinMomentCoeff = [
+	{angle: -90,	value: -0.00},
+	{angle: -50,  	value: -0.220},
+	{angle: -15,  	value: -0.080},
+	{angle: -10,	value: -0.045},
+	{angle: -5,		value: -0.035},
+	{angle:  0,		value: -0.015},
+	{angle: +5,  	value: -0.008},
+
+	{angle: +9,  	value:  0.00},
+	{angle: +11,  	value:  0.011},
+	{angle: +22,  	value:  0.065},
+	{angle: +26,  	value:  0.100},
+	{angle: +35,  	value:  0.150},
+	{angle: +40,  	value:  0.170},
+	{angle: +50,  	value:  0.190},
+	// {angle: +70,  	value: 1.70},
+	// {angle: +80,  	value: 1.85},
+	{angle: +90,  	value: 0.00},
+]
+const defaultPitchingCoef = new Spline(pitchinMomentCoeff.map((pair) => pair.angle), pitchinMomentCoeff.map((pair) => pair.value));
+//const defaultPitchingCoef = new Spline(defaultPitchingArgs, defaultPitchingVals);
 
 
 export class DiscProps {
