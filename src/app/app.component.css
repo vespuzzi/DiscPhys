@@ -117,7 +117,7 @@ mat-slider {
 .spin:before {
   /* margin: 3rem; */
   position: absolute;
-  content: "Spin: Right hand backhand  <  0 Hz  < Right hand fore ";
+  content: "Spin: Right hand backhand  <  0  < Right hand fore (Hz)";
   z-index: -1;
 }
 
@@ -139,7 +139,7 @@ mat-slider {
 .tilt:before {
   /* margin: 3rem; */
   position: absolute;
-  content: "Tilt top left  < 0 degrees < Tilt top right";
+  content: "Tilt left  < 0  < Tilt right (deg)";
   z-index: -1;
 }
   
