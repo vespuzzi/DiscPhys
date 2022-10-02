@@ -188,3 +188,49 @@ mat-slider {
   content: "Wind direction: from left < 0 < from right (deg) ";
   z-index: -1;
 } 
+
+.windUpdraft {
+  position: relative;
+}
+
+.windUpdraft:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Wind updraft: downwards < 0 < upwards (m/s) ";
+  z-index: -1;
+} 
+
+.discMass {
+  position: relative;
+}
+
+.discMass:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Disc mass: (g) ";
+  z-index: -1;
+} 
+
+.discDiameter {
+  position: relative;
+}
+
+.discDiameter:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Disc diameter: (cm) ";
+  z-index: -1;
+} 
+
+.discMassRadius {
+  position: relative;
+}
+
+.discMassRadius:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Disc mass radius: (cm) ";
+  z-index: -1;
+} 
+
+

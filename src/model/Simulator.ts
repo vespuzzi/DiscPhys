@@ -24,14 +24,17 @@ export class SimulationSetup{
     [name: string]: number;
     releaseHeight = 1.4; 
     speed = 30;
-    spin = 25; 
+    spin = -25; 
     pitchAngle = 10; 
     tilt = 0;  
-    initialAoA = 3; 
+    initialAoA = 0; 
     airDensity = 1.2;
     windSpeed = 0;
     windDirection = 0; //0 = tailwind, 
     windUpdraft = 0;
+    discMass = 180;  //g
+    discDiameter = 21; //cm
+    discMassRadius = 9 //cm
 }
 
 export class Simulation {

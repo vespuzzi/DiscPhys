@@ -63,7 +63,7 @@ simulate(setup: SimulationSetup) : void{
 
     const discState =  initializeDiscState(setup);
     const env = initializeEnvironment(setup) //new Environment(1.4, new Vector3(0,0,0), new Vector3(0,0,-9.81));
-    const discProps = new DiscProps(0.180, 0.21, 0.09);
+    const discProps = new DiscProps(setup.discMass/1000, setup.discDiameter/100, setup.discMassRadius/100);
     const simulation = new Simulation(discProps, env);
     const result = simulation.simulate([discState]);
 
@@ -77,13 +77,8 @@ simulate(setup: SimulationSetup) : void{
       this.myChart.data.datasets[0].data =  result.map(state => {return {x: state.r.x, y:state.r.y}});
       this.myChart.data.datasets[1].data =  result.map(state => {return {x: state.r.x, y:state.r.z}});
     }
-
-
-
     this.myChart?.update();
-
     //console.log(this.myChart?.data.datasets[0]);
-
   }
 
 }

@@ -82,7 +82,26 @@
         (input)="updateSimulationInitialConditions(simulation, $event, 'windDirection')">
       </mat-slider>    
     </div>
-    <app-coefficient-chart chartId="divChart"></app-coefficient-chart>
+    <div class="borderx windUpdraft">
+      <mat-slider thumbLabel min="-3" max="3" step="0.2" value={{simulationSetup.windUpdraft}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'windUpdraft')">
+      </mat-slider>    
+    </div>
+    <div class="borderx discMass">
+      <mat-slider thumbLabel min="10" max="200" step="0.2" value={{simulationSetup.discMass}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'discMass')">
+      </mat-slider>    
+    </div>
+    <div class="borderx discDiameter">
+      <mat-slider thumbLabel min="6" max="40" step="0.1" value={{simulationSetup.discDiameter}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'discDiameter')">
+      </mat-slider>    
+    </div>
+    <div class="borderx discMassRadius">
+      <mat-slider thumbLabel min="1" max="{{simulationSetup.discDiameter/2}}" step="0.1" value={{simulationSetup.discMassRadius}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'discMassRadius')">
+      </mat-slider>    
+    </div>    <app-coefficient-chart chartId="divChart"></app-coefficient-chart>
   </div>
   <div class="chart">
     <app-simulation-chart #simulation></app-simulation-chart>
