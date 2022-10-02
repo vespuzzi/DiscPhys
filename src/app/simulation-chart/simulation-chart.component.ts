@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { DiscProps, DiscState } from 'src/model/Disc';
-import { DiscSetup, Environment, getInitialDiscState, initializeDiscState, Simulation } from 'src/model/Simulator';
+import { SimulationSetup, Environment, getInitialDiscState, initializeDiscState, Simulation, initializeEnvironment } from 'src/model/Simulator';
 import { Vector3 } from 'src/model/Vector3';
 
 @Component({ 
@@ -56,13 +56,13 @@ export class SimulationChartComponent implements OnInit {
         },
       }
   });
-  this.simulate(new DiscSetup);
+  this.simulate(new SimulationSetup);
 };
 
-simulate(discSetup: DiscSetup) : void{
+simulate(setup: SimulationSetup) : void{
 
-    const discState =  initializeDiscState(discSetup);
-    const env = new Environment(1.4, new Vector3(0,0,0), new Vector3(0,0,-9.81));
+    const discState =  initializeDiscState(setup);
+    const env = initializeEnvironment(setup) //new Environment(1.4, new Vector3(0,0,0), new Vector3(0,0,-9.81));
     const discProps = new DiscProps(0.180, 0.21, 0.09);
     const simulation = new Simulation(discProps, env);
     const result = simulation.simulate([discState]);

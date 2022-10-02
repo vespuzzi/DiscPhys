@@ -38,33 +38,48 @@
 <div class="content">
   <div class="left">
     <div class="borderx releaseHeight">
-      <mat-slider  thumbLabel min="0.5" max="2" step="0.1" value={{discSetup.releaseHeight}}
+      <mat-slider  thumbLabel min="0.5" max="2" step="0.1" value={{simulationSetup.releaseHeight}}
           (input)="updateSimulationInitialConditions(simulation, $event, 'releaseHeight')">
       </mat-slider>
     </div>  
     <div class="borderx speed">
-      <mat-slider thumbLabel min="1" max="50" step="1" value={{discSetup.speed}}
+      <mat-slider thumbLabel min="1" max="50" step="1" value={{simulationSetup.speed}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'speed')">
       </mat-slider>
     </div>
     <div class="borderx spin">
-      <mat-slider thumbLabel min="-40" max="40" step="0.5" value={{discSetup.spin}}
+      <mat-slider thumbLabel min="-40" max="40" step="0.5" value={{simulationSetup.spin}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'spin')">
       </mat-slider>
     </div>
     <div class="borderx pitchAngle">
-      <mat-slider thumbLabel min="-5" max="90" step="1" value={{discSetup.pitchAngle}}
+      <mat-slider thumbLabel min="-5" max="90" step="1" value={{simulationSetup.pitchAngle}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'pitchAngle')">
       </mat-slider>
     </div>
     <div class="borderx tilt">
-      <mat-slider thumbLabel min="-180" max="180" step="1" value={{discSetup.tilt}
+      <mat-slider thumbLabel min="-180" max="180" step="1" value={{simulationSetup.tilt}
         (input)="updateSimulationInitialConditions(simulation, $event, 'tilt')">
       </mat-slider>
     </div>
     <div class="borderx initialAoA">
-      <mat-slider thumbLabel min="-45" max="90" step="1" value={{discSetup.initialAoA}}
+      <mat-slider thumbLabel min="-45" max="90" step="1" value={{simulationSetup.initialAoA}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'initialAoA')">
+      </mat-slider>    
+    </div>
+    <div class="borderx airDensity">
+      <mat-slider thumbLabel min="1" max="1.5" step="0.05" value={{simulationSetup.airDensity}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'airDensity')">
+      </mat-slider>    
+    </div>
+    <div class="borderx windSpeed">
+      <mat-slider thumbLabel min="0" max="20" step="0.2" value={{simulationSetup.windSpeed}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'windSpeed')">
+      </mat-slider>    
+    </div>
+    <div class="borderx windDirection">
+      <mat-slider thumbLabel min="-180" max="180" step="1" value={{simulationSetup.windDirection}}
+        (input)="updateSimulationInitialConditions(simulation, $event, 'windDirection')">
       </mat-slider>    
     </div>
     <app-coefficient-chart chartId="divChart"></app-coefficient-chart>

@@ -68,7 +68,8 @@
   }
 
 mat-slider {
-    width: 500px;
+    width: 400px;
+    height: 35px;
     /* background-color: blue; */
     /* position: relative; */
   }
@@ -82,10 +83,11 @@ mat-slider {
   }
 
 .borderx {
-    color: rgba(151, 197, 224, 0.897);
-    font-size: larger;
-    font-weight: 800;
-    text-align: end;  
+    color: rgba(99, 154, 226, 0.575);
+    font-size: 100;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-top: 2px;
   }
   
 .releaseHeight {
@@ -151,5 +153,38 @@ mat-slider {
   /* margin: 3rem; */
   position: absolute;
   content: "Initial Angle of Attack (deg)";
+  z-index: -1;
+} 
+
+.airDensity {
+  position: relative;
+}
+
+.airDensity:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Air density (kg/m^3)";
+  z-index: -1;
+} 
+
+.windSpeed {
+  position: relative;
+}
+
+.windSpeed:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Wind speed (m/s)";
+  z-index: -1;
+} 
+
+.windDirection {
+  position: relative;
+}
+
+.windDirection:before {
+  /* margin: 3rem; */
+  position: absolute;
+  content: "Wind direction: from left < 0 < from right (deg) ";
   z-index: -1;
 } 

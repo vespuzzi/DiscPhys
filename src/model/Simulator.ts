@@ -17,8 +17,10 @@ export class Environment{
         this.G = G;
     }
 }
-
-export class DiscSetup{
+/**
+ * Simulation setup contains initial values for simulation in "human understandable form"
+ */
+export class SimulationSetup{
     [name: string]: number;
     releaseHeight = 1.4; 
     speed = 30;
@@ -26,6 +28,10 @@ export class DiscSetup{
     pitchAngle = 10; 
     tilt = 0;  
     initialAoA = 3; 
+    airDensity = 1.2;
+    windSpeed = 0;
+    windDirection = 0; //0 = tailwind, 
+    windUpdraft = 0;
 }
 
 export class Simulation {
@@ -129,7 +135,7 @@ export function getInitialDiscState(
   return new DiscState(position, velocity, spin, ori)
 }
 
-export function initializeDiscState(setup: DiscSetup):DiscState{
+export function initializeDiscState(setup: SimulationSetup):DiscState{
     return getInitialDiscState(
               setup.releaseHeight,
               setup.speed,
@@ -138,6 +144,16 @@ export function initializeDiscState(setup: DiscSetup):DiscState{
               setup.tilt,
               setup.initialAoA
               );
+}
+export function initializeEnvironment(setup: SimulationSetup): Environment{
+    return new Environment(
+        setup.airDensity, 
+        new Vector3(
+            setup.windSpeed*Math.cos(deg2Rad(setup.windDirection)),
+            setup.windSpeed*Math.sin(deg2Rad(setup.windDirection)),
+            setup.windUpdraft),
+        new Vector3(0, 0, -9.81)
+    )    
 }
 
 
