@@ -37,71 +37,72 @@
 </div>  
 <div class="content">
   <div class="left">
-    <div class="borderx releaseHeight">
+    <div class="discstate releaseHeight">
       <mat-slider  thumbLabel min="0.5" max="2" step="0.1" value={{simulationSetup.releaseHeight}}
           (input)="updateSimulationInitialConditions(simulation, $event, 'releaseHeight')">
       </mat-slider>
     </div>  
-    <div class="borderx speed">
-      <mat-slider thumbLabel min="1" max="50" step="1" value={{simulationSetup.speed}}
+    <div class="discstate speed">
+      <mat-slider thumbLabel min="5" max="150" step="1" value={{simulationSetup.speed}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'speed')">
       </mat-slider>
     </div>
-    <div class="borderx spin">
+    <div class="discstate spin">
       <mat-slider thumbLabel min="-40" max="40" step="0.5" value={{simulationSetup.spin}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'spin')">
       </mat-slider>
     </div>
-    <div class="borderx pitchAngle">
+    <div class="discstate pitchAngle">
       <mat-slider thumbLabel min="-5" max="90" step="1" value={{simulationSetup.pitchAngle}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'pitchAngle')">
       </mat-slider>
     </div>
-    <div class="borderx tilt">
+    <div class="discstate tilt">
       <mat-slider thumbLabel min="-180" max="180" step="1" value={{simulationSetup.tilt}
         (input)="updateSimulationInitialConditions(simulation, $event, 'tilt')">
       </mat-slider>
     </div>
-    <div class="borderx initialAoA">
+    <div class="discstate initialAoA">
       <mat-slider thumbLabel min="-45" max="90" step="1" value={{simulationSetup.initialAoA}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'initialAoA')">
       </mat-slider>    
     </div>
-    <div class="borderx airDensity">
+    <div class="environment airDensity">
       <mat-slider thumbLabel min="1" max="1.5" step="0.05" value={{simulationSetup.airDensity}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'airDensity')">
       </mat-slider>    
     </div>
-    <div class="borderx windSpeed">
+    <div class="environment windSpeed">
       <mat-slider thumbLabel min="0" max="20" step="0.2" value={{simulationSetup.windSpeed}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'windSpeed')">
       </mat-slider>    
     </div>
-    <div class="borderx windDirection">
+    <div class="environment windDirection">
       <mat-slider thumbLabel min="-180" max="180" step="1" value={{simulationSetup.windDirection}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'windDirection')">
       </mat-slider>    
     </div>
-    <div class="borderx windUpdraft">
+    <div class="environment windUpdraft">
       <mat-slider thumbLabel min="-3" max="3" step="0.2" value={{simulationSetup.windUpdraft}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'windUpdraft')">
       </mat-slider>    
     </div>
-    <div class="borderx discMass">
+    <div class="discprops discMass">
       <mat-slider thumbLabel min="10" max="200" step="0.2" value={{simulationSetup.discMass}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'discMass')">
       </mat-slider>    
     </div>
-    <div class="borderx discDiameter">
+    <div class="discprops discDiameter">
       <mat-slider thumbLabel min="6" max="40" step="0.1" value={{simulationSetup.discDiameter}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'discDiameter')">
       </mat-slider>    
     </div>
-    <div class="borderx discMassRadius">
+    <div class="discprops discMassRadius">
       <mat-slider thumbLabel min="1" max="{{simulationSetup.discDiameter/2}}" step="0.1" value={{simulationSetup.discMassRadius}}
         (input)="updateSimulationInitialConditions(simulation, $event, 'discMassRadius')">
       </mat-slider>    
-    </div>    <app-coefficient-chart chartId="divChart"></app-coefficient-chart>
+    </div>    
+    <app-coefficient-chart chartId="divChart"></app-coefficient-chart>
   </div>
   <div class="chart">
     <app-simulation-chart #simulation></app-simulation-chart>

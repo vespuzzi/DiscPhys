@@ -82,13 +82,30 @@ mat-slider {
     right: -20px;
   }
 
-.borderx {
+
+.discstate {
+    color: rgba(129, 209, 178, 0.575);
+    font-size: 100;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+  
+  .environment {
     color: rgba(99, 154, 226, 0.575);
     font-size: 100;
     font-weight: 700;
     margin-left: 5px;
     margin-top: 2px;
   }
+
+.discprops {
+    color: rgba(233, 136, 57, 0.575);
+    font-size: 100;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-top: 2px;
+  }  
   
 .releaseHeight {
     position: relative;
@@ -108,7 +125,7 @@ mat-slider {
 .speed:before {
   /* margin: 3rem; */
   position: absolute;
-  content: "Speed (m/s)";
+  content: "Speed (km/h)";
   z-index: -1;
 }
 

@@ -23,7 +23,7 @@ export class Environment{
 export class SimulationSetup{
     [name: string]: number;
     releaseHeight = 1.4; 
-    speed = 30;
+    speed = 100;
     spin = -25; 
     pitchAngle = 10; 
     tilt = 0;  
@@ -133,7 +133,7 @@ export function getInitialDiscState(
     tilt: number,  
     initialAoA: number): DiscState{
   const position = new Vector3(0,0, releaseHeight);  
-  const velocity = spherical(speed, 0, deg2Rad(90-pitchAngle));
+  const velocity = spherical(speed/3.6, 0, deg2Rad(90-pitchAngle));
   const ori = spherical(1, deg2Rad(180), deg2Rad(pitchAngle + initialAoA)).rotate(velocity, deg2Rad(tilt)); 
   return new DiscState(position, velocity, spin, ori)
 }
