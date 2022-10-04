@@ -58,7 +58,7 @@ export const defaultSimulationSetup = {
     discDiameter:   {value: 21, prompt: 'Disc diameter',                            
                      unit: 'cm',   min: 5,  max: 40, step: 0.2, category: 'discProps',
                      tooltip: 'Minimum PDGA approved diameter is 21cm'},
-    discMassRadius: {value: 10.5, prompt: 'Disc mass radius',                            
+    discMassRadius: {value: 9, prompt: 'Disc mass radius',                            
                      unit: 'cm', min: 1,  max: 10.5, step: 0.1, category: 'discProps',
                      tooltip: 'Radius of a ring that has the same moment of inertia as the disc (Roc3 has 9cm mass radius, Star Boss 8.4cm )'},
 }
