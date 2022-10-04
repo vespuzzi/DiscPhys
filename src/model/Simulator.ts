@@ -44,7 +44,7 @@ export const defaultSimulationSetup = {
                      unit: 'kg/m^3', min: 0.5,  max: 1.5, step: 0.01, category: 'discState', 
                      tooltip: 'Air density varies with altitude and temperature. At sea level 30°C -> 1.16kg/m^3, -25°C -> 1.422kg/m^3'},
     windSpeed:      {value: 0,   prompt: 'Wind speed',                       
-                     unit: 'm/s',  min: 0.5,  max: 2.5, step: 0.1, category: 'environment',
+                     unit: 'm/s',  min: 0.5,  max: 15, step: 0.1, category: 'environment',
                      tooltip: 'Magnitude of wind velocity in horizontal plane'},
     windDirection:  {value: 0,   prompt: 'Wind direction: from left < 0 < from right',           
                      unit: '°',   min: -180,  max: 180, step: 0.5, category: 'environment',
