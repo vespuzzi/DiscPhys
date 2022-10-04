@@ -8,3 +8,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: rgb(223, 29, 29);
     border: solid 4px rgb(136, 12, 219);
   } */
+
+
+  .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+    top: 2px;
+  }
