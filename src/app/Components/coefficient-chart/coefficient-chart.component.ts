@@ -11,8 +11,6 @@ Chart.register(...registerables);
   styleUrls: ['./coefficient-chart.component.css']
 })
 export class CoefficientChartComponent implements OnInit {
-
-  @Input() chartId: any;  
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +18,7 @@ export class CoefficientChartComponent implements OnInit {
     const data = discProps.cLiftData(-90, 90, 1);
    // const aChart = new Chart()
 
-    const myChart = new Chart("sart", {
+    const myChart = new Chart("coeffCanvas", {
       type: 'scatter',
       data: {
           datasets: [{
