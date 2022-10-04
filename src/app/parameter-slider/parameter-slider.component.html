@@ -1,0 +1,6 @@
+<div class="slidercontainer">
+    <div class={{category}} title={{tooltip}}>{{prompt + ' = '  + simulationSetup[parameterName].value + ' ' +simulationSetup[parameterName].unit}}</div>
+    <mat-slider  thumbLabel min={{min}} max={{max}} step={{step}} value={{simulationSetup[parameterName].value}}
+        (input)="onChange(simulationChart, $event, parameterName)">
+    </mat-slider>
+</div>  

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SimulationSetup, Simulation } from 'src/model/Simulator';
+import { defaultSimulationSetup, Simulation } from 'src/model/Simulator';
 import { SimulationChartComponent } from './simulation-chart/simulation-chart.component';
 
 @Component({
@@ -8,15 +8,17 @@ import { SimulationChartComponent } from './simulation-chart/simulation-chart.co
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  {
-  title = 'Disc Physics Simulator 0.1 Beta';
-  simulationSetup: SimulationSetup = new SimulationSetup();
-  
+  title = 'Disc Physics Simulator 0.3';
+  simulationSetup: any = defaultSimulationSetup;
+  simulationSetupKeys = Object.keys(defaultSimulationSetup);
   ngOnInit(): void{
     //Simulation.simulate(this.simulationSetup);
   }
 
-  updateSimulationInitialConditions(simulationChart: SimulationChartComponent, event: any, prop: string){
-    this.simulationSetup[prop] = event.value;
+  updateSimulationInitialConditions = (simulationChart: SimulationChartComponent, event: any, prop: string) =>{
+    this.simulationSetup[prop].value = event.value;
+    this.simulationSetup.discMassRadius.max = this.simulationSetup.discDiameter/2;
     simulationChart.simulate(this.simulationSetup);
+    return "ok";
   }
 }

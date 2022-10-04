@@ -21,29 +21,22 @@
   }
 
   .toolbar {
-    position: absolute;
+    top: 0;
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 65px;
     display: flex;
     align-items: center;
-    background-color: #a28cd4;
+    background-color: #c2b4e4;
     color: white;
     font-weight: 500;
     font-size: 20px;
-    border-width: 3;
-    border-color: aquamarine;
   }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
 
   .content {
     display: flex;
-    margin: 70px auto 32px;
+    margin: 6px auto 32px;
     padding: 3 3px;
     /* max-width: "50%"; */
     flex-direction: row;
@@ -62,192 +55,7 @@
   .left{
     flex: 22;
     height: 600px;
-    border: solid rgb(55, 140, 173);
+    /* border: solid rgb(55, 140, 173); */
     border-width: 0.1px;
     margin-left: 5;
   }
-
-mat-slider {
-    width: 400px;
-    height: 35px;
-    /* background-color: blue; */
-    /* position: relative; */
-  }
-  .mat-accent .mat-slider-thumb {
-    height: 30px;
-    width: 30px;
-    background-color: rgb(158, 62, 62);
-    border: solid 2px gray;
-    bottom: -20px;
-    right: -20px;
-  }
-
-
-.discstate {
-    color: rgba(129, 209, 178, 0.575);
-    font-size: 100;
-    font-weight: 700;
-    margin-left: 5px;
-    margin-top: 2px;
-  }
-  
-  .environment {
-    color: rgba(99, 154, 226, 0.575);
-    font-size: 100;
-    font-weight: 700;
-    margin-left: 5px;
-    margin-top: 2px;
-  }
-
-.discprops {
-    color: rgba(233, 136, 57, 0.575);
-    font-size: 100;
-    font-weight: 700;
-    margin-left: 5px;
-    margin-top: 2px;
-  }  
-  
-.releaseHeight {
-    position: relative;
-}
-
-.releaseHeight:before {
-    /* margin: 3rem; */
-    position: absolute;
-    content: "Release height (m)";
-    z-index: -1;
-}
-
-.speed {
-  position: relative;
-}
-
-.speed:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Speed (km/h)";
-  z-index: -1;
-}
-
-.spin {
-  position: relative;
-}
-
-.spin:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Spin: Right hand backhand  <  0  < Right hand fore (Hz)";
-  z-index: -1;
-}
-
-.pitchAngle {
-  position: relative;
-}
-
-.pitchAngle:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Pitch Angle (deg)";
-  z-index: -1;
-}
-
-.tilt {
-  position: relative;
-}
-
-.tilt:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Tilt left  < 0  < Tilt right (deg)";
-  z-index: -1;
-}
-  
-.initialAoA {
-  position: relative;
-}
-
-.initialAoA:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Initial Angle of Attack (deg)";
-  z-index: -1;
-} 
-
-.airDensity {
-  position: relative;
-}
-
-.airDensity:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Air density (kg/m^3)";
-  z-index: -1;
-} 
-
-.windSpeed {
-  position: relative;
-}
-
-.windSpeed:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Wind speed (m/s)";
-  z-index: -1;
-} 
-
-.windDirection {
-  position: relative;
-}
-
-.windDirection:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Wind direction: from left < 0 < from right (deg) ";
-  z-index: -1;
-} 
-
-.windUpdraft {
-  position: relative;
-}
-
-.windUpdraft:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Wind updraft: downwards < 0 < upwards (m/s) ";
-  z-index: -1;
-} 
-
-.discMass {
-  position: relative;
-}
-
-.discMass:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Disc mass: (g) ";
-  z-index: -1;
-} 
-
-.discDiameter {
-  position: relative;
-}
-
-.discDiameter:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Disc diameter: (cm) ";
-  z-index: -1;
-} 
-
-.discMassRadius {
-  position: relative;
-}
-
-.discMassRadius:before {
-  /* margin: 3rem; */
-  position: absolute;
-  content: "Disc mass radius: (cm) ";
-  z-index: -1;
-} 
-
-

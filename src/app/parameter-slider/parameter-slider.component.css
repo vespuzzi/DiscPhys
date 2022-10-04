@@ -1,0 +1,38 @@
+mat-slider {
+    width: 400px;
+    height: 20px;
+    /* border: solid 1px gray; */
+    margin-top: 1px;
+    padding-top: 0px;
+  }
+
+.slidercontainer{
+    margin-bottom: -4px; 
+    /* border: solid 1px black; */
+}
+
+.discState {
+    color: rgba(129, 209, 178, 0.575);
+    font-size: 100;
+    font-weight: 700;
+    margin-left: 5px;
+    /* border: solid 1px rgb(241, 13, 13); */
+    margin-bottom: 0px;
+    /* margin-top: 2px; */
+  }
+  
+.environment {
+    color: rgba(99, 154, 226, 0.575);
+    font-size: 100;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+
+.discProps {
+    color: rgba(233, 136, 57, 0.575);
+    font-size: 100;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-top: 2px;
+  }  
