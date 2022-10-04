@@ -1,0 +1,26 @@
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120" height="90" stroke="#000" stroke-linecap="round" stroke-linejoin="round" fill="#fff" fill-rule="evenodd">
+    <defs>
+        <linearGradient id="A" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#93f9b9"/>
+            <stop offset="100%" stop-color="#1d976c"/>
+        </linearGradient>
+        <path d="M0 0l3 10h-6z" stroke="none" id="B"/>
+    </defs>
+    <ellipse cx="26" cy="5.5868" rx="26" ry="5.5868" fill="url(#A)" transform="matrix(.96592583 -.25881905 .25881905 .96592583 32.09565828 44.45876077)" stroke="none"/>
+    <g transform="matrix(-.98480775 -.17364818 .17364818 -.98480775 58.49984549 70.49978017)">
+        <path fill="none" d="M4.8621 27.5746l-2.8-15.88" stroke="#ff8200" stroke-width="2"/>
+        <use transform="matrix(1.23101007 -.21705807 .21705807 1.23101007 0 0)" fill="#ff8200" xlink:href="#B"/>
+    </g>
+    <g transform="matrix(-.17364818 .98480775 -.98480775 -.17364818 92.49987338 43.49999016)">
+        <path fill="none" d="M5.7305 32.4987L2.0621 11.6946" stroke="#ff8200" stroke-width="2"/>
+        <use transform="matrix(1.23100893 -.21706452 .21706452 1.23100893 0 0)" fill="#ff8200" xlink:href="#B"/>
+    </g>
+    <g transform="translate(52.5 14.5)">
+        <path fill="none" d="M6.0001 28L2.4882 11.6114" stroke="#ff8200" stroke-width="2"/>
+        <use transform="matrix(1.22225191 -.26191654 .26191654 1.22225191 0 0)" fill="#ff8200" xlink:href="#B"/>
+    </g>
+    <g transform="matrix(.08715574 -.9961947 .9961947 .08715574 24.5000686 44.50012577)">
+        <path fill="none" d="M3.9485 33.6584L1.3836 11.7941" stroke="#ff8200" stroke-width="2"/>
+        <use transform="matrix(1.24148671 -.14563908 .14563908 1.24148671 0 0)" fill="#ff8200" xlink:href="#B"/>
+    </g>
+</svg>
