@@ -34,9 +34,9 @@ export const defaultSimulationSetup = {
     pitchAngle:     {value: 5,   prompt: 'Pitch angle',                      
                      unit: '°',   min: -10,  max: 90, step: 0.5, category: 'discState',
                      tooltip: 'Initial direction of the disc velocity. 0° means horizontal'},
-    initialAoA:     {value: 0,   prompt: 'Initial angle of attack',          
+    initialAoA:     {value: 0,   prompt: 'Initial nose up angle',          
                      unit: '°',   min: -45,  max: 90, step: 0.5, category: 'discState',
-                     tooltip: 'Angle between disc plane and disc velocity'}, 
+                     tooltip: 'Angle between disc plane and disc velocity, (calculated angle of attack depends also on wind velocity)'}, 
     tilt:           {value: 0,   prompt: 'Tilt: left < 0 < right',           
                      unit: '°',   min: -180,  max: 180, step: 0.5, category: 'discState',
                      tooltip: 'Initial sideways tilt of the disc. Positive values mean tilt to the right (right hand curl rule when rotating disc normal vector about velocity vector) '},
@@ -155,7 +155,7 @@ export function deg2Rad(deg: number)
  * @param initialAoA    Initial angle of attack in degrees: Angle between disc plane and disc velocity
  * @return              Initial disc state
  */
-export function getInitialDiscState(
+function getInitialDiscState(
     releaseHeight:number, 
     speed: number,
     spin: number,  
