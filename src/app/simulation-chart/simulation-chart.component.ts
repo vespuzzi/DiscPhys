@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { DiscProps } from 'src/model/Disc';
-import { initializeDiscState, Simulation, initializeEnvironment, defaultSimulationSetup } from 'src/model/Simulator';
+import { Simulation, initializeEnvironment, defaultSimulationSetup, initializeDiscState } from 'src/model/Simulator';
 
 @Component({ 
   selector: 'app-simulation-chart',
